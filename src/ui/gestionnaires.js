@@ -26,7 +26,18 @@ export const setupGestionnaires = () => {
         // Empêcher le rechargement de la page
         evt.preventDefault()
 
-        console.log(evt.target)
+        //Récupérer les valeurs saisies
+        const titre = livreForm.title.value
+        const auteur = livreForm.author.value
+        const resume = livreForm.summary.value
+        const estLu = livreForm.isRead.checked
+
+        //*****************************************************
+        //Sauvegarder les données saisie
+        //*****************************************************
+
+        // 1. Créer un objet javascript
+
     })
 
 
