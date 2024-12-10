@@ -1,5 +1,7 @@
 // Gestionnaires d'événements
 
+import {insererLivre} from "../services/livreService.js";
+
 export const setupGestionnaires = () => {
 
     // Récuérer les éléments dans le DOM
@@ -33,12 +35,37 @@ export const setupGestionnaires = () => {
         const estLu = livreForm.isRead.checked
 
         //*****************************************************
-        //Sauvegarder les données saisie
+        //          Sauvegarder les données saisie
         //*****************************************************
 
-        // 1. Créer un objet javascript
+
+        insererLivre(titre,auteur,resume,estLu)
+
+
+        // 4. Cacher (collapse) le formulaire
+
+        //formCollapse.hide()
 
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
