@@ -66,11 +66,51 @@ export const rechercherTousLesLivres = () => {
 }
 
 
+export const supprimerLivre = id =>{
+
+    // Récupérer dans le localStorage la valeur liée à la clé "livres"
+
+    const livresJson = localStorage.getItem("livres")
 
 
+    // Désérialiser le JSON dans un tableau JavaScript
+
+    const livres = livresJson ? JSON.parse(livresJson) : []
+
+    // Supprimer le livre avec l'id 'id' dans le tableau livre
+
+    const livresRestants = livres.filter( livre => livre.id != id)
 
 
+    // Sauvegarder dans le localtorage
 
+    localStorage.setItem("livres",JSON.stringify(livresRestants))
+
+}
+
+
+export const changerLu = id =>{
+
+    // Récupérer dans le localStorage la valeur liée à la clé "livres"
+
+    const livresJson = localStorage.getItem("livres")
+
+
+    // Désérialiser le JSON dans un tableau JavaScript
+
+    const livres = livresJson ? JSON.parse(livresJson) : []
+
+    // Supprimer le livre avec l'id 'id' dans le tableau livre
+
+    const livresAChanger = livres.find(livre => livre.id === id)
+
+    livresAChanger.estLu = !livresAChanger.estLu
+
+    // Sauvegarder dans le localtorage
+
+    localStorage.setItem("livres",JSON.stringify(livres))
+
+}
 
 
 

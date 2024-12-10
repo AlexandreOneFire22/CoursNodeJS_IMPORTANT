@@ -1,6 +1,7 @@
 // Gestionnaires d'événements
 
-import {insererLivre} from "../services/livreService.js";
+import {changerLu, insererLivre, supprimerLivre} from "../services/livreService.js";
+import {afficherLivres} from "./render.js";
 
 export const setupGestionnaires = () => {
 
@@ -39,14 +40,45 @@ export const setupGestionnaires = () => {
         //*****************************************************
 
 
-        insererLivre(titre,auteur,resume,estLu)
+        insererLivre(titre, auteur, resume, estLu)
 
 
         // 4. Cacher (collapse) le formulaire
 
-        //formCollapse.hide()
+        formCollapse.hide()
 
+        //Afficher la liste des livres
+
+        afficherLivres()
     })
+
+        // traitement de la génération d'un livre
+        // Délégation d'événements
+
+        const listeLivres = document.querySelector("#booksList")
+        listeLivres.addEventListener("click",(evt)=>{
+
+            //Récupérer l'élément sur lequel on a cliqué
+            const target = evt.target.closest(".delete-btn, .toggle-read-btn")
+
+            if (target === null) return;
+
+            // Récupérer l'id du livre à partir du data-id (Dataset)
+
+            const  idLivre = target.dataset.id
+
+            //Déterminer sur quel élément on a cliqué
+
+            if (target.classList.contains("delete-btn")){
+                supprimerLivre(idLivre)
+                afficherLivres() // Mise à jour de l'affichage
+            }else if (target.classList.contains("toggle-read-btn")){
+                changerLu(idLivre)
+                afficherLivres() // Mise à jour de l'affichage
+            }
+
+        })
+
 
 
 
